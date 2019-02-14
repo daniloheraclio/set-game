@@ -9,9 +9,9 @@ import StartGame from './StartGame';
 
 
 export class MainGame extends Component {
- 
+
   state = {
-    step: 0
+    step: 1
   }
 
   nextStepHandler = (n) => {
@@ -27,16 +27,16 @@ export class MainGame extends Component {
     switch(step) {
       case 0:
         return (
-          <Menu 
+          <Menu
             startGame={this.nextStepHandler.bind(this, 1)}
             howToPlay={this.nextStepHandler.bind(this, 2)}
             about={this.nextStepHandler.bind(this, 5)}
           />
         )
-      case 1: 
+      case 1:
         return (
-          <StartGame 
-            menu={this.nextStepHandler.bind(this, 0)}    
+          <StartGame
+            menu={this.nextStepHandler.bind(this, 0)}
           />
         )
       case 2:
@@ -63,14 +63,14 @@ export class MainGame extends Component {
       case 5 :
         return (
           <About
-           menu={this.nextStepHandler.bind(this, 0)} 
+           menu={this.nextStepHandler.bind(this, 0)}
           />
         )
-      default: 
+      default:
           return <h1>Error</h1>
     }
   }
-  
+
 }
 
 export default MainGame
