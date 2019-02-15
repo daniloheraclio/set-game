@@ -15,7 +15,7 @@ export class MainGame extends Component {
   }
 
   nextStepHandler = (n) => {
-    const { step } = this.state;
+    //const { step } = this.state;
     this.setState({
       step: n
     })
@@ -23,6 +23,7 @@ export class MainGame extends Component {
 
   render() {
     const { step } = this.state;
+
 
     switch(step) {
       case 0:
