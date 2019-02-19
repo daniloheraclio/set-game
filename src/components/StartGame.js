@@ -1,10 +1,68 @@
-import React from 'react'
-import '../styles/Style.css'
+import React, { Component } from 'react'
+//import '../styles/Style.css'
+import Cell from './Cell'
 import Button from '@material-ui/core/Button';
 
-const StartGame = (props) => {
+
+class Game extends Component{
+  constructor(props){
+    super();
+  }
+  state = {
+
+  }
+  w = 3;
+  h = 3;
+
+  cellAttributes = {
+    color: ['blue', 'green', 'red'],
+    shape: ['square', 'circle', 'triangle'],
+    fill: ['full', 'empty', 'striped'],
+  }
+  //melhorar essa parada ai. tem que criar o obj num loop !!!!!
+  grid = [...Array(this.w * this.h)].map(x =>{
+      return {
+        color: this.getRandomAttribute(this.cellAttributes.color),
+        shape: this.getRandomAttribute(this.cellAttributes.shape),
+        fill: this.getRandomAttribute(this.cellAttributes.fill),
+      }
+  })
+
+  getRandomAttribute(list){
+    return  list[Math.floor(Math.random() * list.length)];
+  }
+
+
+
+  render(){
+
+    return (
+      <div>
+        <div className="game">
+         <Cell
+          color={this.getRandomAttribute(this.cellAttributes.color)}
+          shape={this.getRandomAttribute(this.cellAttributes.shape)}
+          fill={this.getRandomAttribute(this.cellAttributes.fill)}
+         />
+
+        </div>
+
+
+        <Button
+          variant="outline"
+          color="primary"
+          onClick={this.props.menu}
+          >Menu
+        </Button>
+      </div>
+    )
+  }
+}
+
+
+/*const StartGame = (props) => {
   return (
-    <div clssName="wrapper" >
+    <div className="wrapper" >
       <div className="container">
         <div className="row">
           <div class="square">1x1</div>
@@ -30,7 +88,7 @@ const StartGame = (props) => {
         >
       Menu
       </Button>
-    
+
     </div>
   )
 }
@@ -39,7 +97,7 @@ const style = {
   button: {
     margin: 15
   }
-}
+}*/
 
 
-export default StartGame
+export default Game;
