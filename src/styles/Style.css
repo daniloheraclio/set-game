@@ -75,10 +75,22 @@
 
 /* Small screens */
 @media all and (max-width: 500px) {
-  
+
   .square {
     width: 100px;
     height: 100px;
     margin: 0 0.3rem;
   }
+}
+
+.game{
+  max-width: 300px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell{
+
+
 }

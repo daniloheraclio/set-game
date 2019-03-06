@@ -4,47 +4,63 @@ import Cell from './Cell'
 import Button from '@material-ui/core/Button';
 
 
-class Game extends Component{
-  constructor(props){
+class Game extends Component {
+  constructor(props) {
     super();
   }
   state = {
 
   }
+  //those are class properties, hence we dont use let, const, var...
   w = 3;
   h = 3;
-
+  randColor = null;
   cellAttributes = {
     color: ['blue', 'green', 'red'],
     shape: ['square', 'circle', 'triangle'],
     fill: ['full', 'empty', 'striped'],
   }
-  //melhorar essa parada ai. tem que criar o obj num loop !!!!!
-  grid = [...Array(this.w * this.h)].map(x =>{
-      return {
-        color: this.getRandomAttribute(this.cellAttributes.color),
-        shape: this.getRandomAttribute(this.cellAttributes.shape),
-        fill: this.getRandomAttribute(this.cellAttributes.fill),
-      }
-  })
-
-  getRandomAttribute(list){
-    return  list[Math.floor(Math.random() * list.length)];
+  colors = {
+    blue: '#209eff',
+    red: '#e13d58',
+    green: '#5cd85a',
   }
 
 
+  grid = [...Array(this.w * this.h)].map(x => {
+    this.randColor = this.getRandomAttribute(this.cellAttributes.color);
+    return <Cell
+      color={this.colors[this.randColor]}
+      colorName={this.randColor}
+      shape={this.getRandomAttribute(this.cellAttributes.shape)}
+      fill={this.getRandomAttribute(this.cellAttributes.fill)}
+    />
 
-  render(){
+  })
+
+  getRandomAttribute(list) {
+    return list[Math.floor(Math.random() * list.length)];
+  }
+  render() {
 
     return (
+      //SVG pattern definition...we should probably put it in a high order component
       <div>
+        <svg width="0" height="0" viewBox="0 0 0 0">
+          <defs>
+            <pattern id="stripedblue" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="10" style={{ stroke: this.colors.blue, strokeWidth: 3 }} />
+            </pattern>
+            <pattern id="stripedred" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="10" style={{ stroke: this.colors.red, strokeWidth: 3 }} />
+            </pattern>
+            <pattern id="stripedgreen" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="10" style={{ stroke: this.colors.green, strokeWidth: 3 }} />
+            </pattern>
+          </defs>
+        </svg>
         <div className="game">
-         <Cell
-          color={this.getRandomAttribute(this.cellAttributes.color)}
-          shape={this.getRandomAttribute(this.cellAttributes.shape)}
-          fill={this.getRandomAttribute(this.cellAttributes.fill)}
-         />
-
+          {this.grid}
         </div>
 
 
@@ -52,7 +68,7 @@ class Game extends Component{
           variant="outline"
           color="primary"
           onClick={this.props.menu}
-          >Menu
+        >Menu
         </Button>
       </div>
     )

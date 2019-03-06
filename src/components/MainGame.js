@@ -25,7 +25,7 @@ export class MainGame extends Component {
     const { step } = this.state;
 
 
-    switch(step) {
+    switch (step) {
       case 0:
         return (
           <Menu
@@ -47,28 +47,28 @@ export class MainGame extends Component {
             valid={this.nextStepHandler.bind(this, 3)}
           />
         )
-      case 3 :
+      case 3:
         return (
           <HowToPlayValid
-           instructions={this.nextStepHandler.bind(this, 2)}
-           invalid={this.nextStepHandler.bind(this, 4)}
+            instructions={this.nextStepHandler.bind(this, 2)}
+            invalid={this.nextStepHandler.bind(this, 4)}
           />
         )
-      case 4 :
+      case 4:
         return (
           <HowToPlayInvalid
-           valid={this.nextStepHandler.bind(this, 3)}
-           menu={this.nextStepHandler.bind(this, 0)}
+            valid={this.nextStepHandler.bind(this, 3)}
+            menu={this.nextStepHandler.bind(this, 0)}
           />
         )
-      case 5 :
+      case 5:
         return (
           <About
-           menu={this.nextStepHandler.bind(this, 0)}
+            menu={this.nextStepHandler.bind(this, 0)}
           />
         )
       default:
-          return <h1>Error</h1>
+        return <h1>Error</h1>
     }
   }
 
